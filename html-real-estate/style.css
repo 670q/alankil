@@ -1,0 +1,308 @@
+:root {
+    --primary: #c39b6e; /* Elegant gold/bronze */
+    --primary-dark: #a88155;
+    --bg-dark: #0f1115; /* Sleek dark background */
+    --bg-card: #1a1d24;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    background: transparent;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.location-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(195, 155, 110, 0.1);
+    border: 1px solid rgba(195, 155, 110, 0.2);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    min-height: calc(100vh - 100px);
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 10;
+    text-align: right;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 0%, #a3a3a3 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--bg-dark);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(195, 155, 110, 0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.property-details {
+    display: flex;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* 3D Model Container */
+.hero-model-container {
+    flex: 1;
+    height: 600px;
+    position: absolute;
+    left: 0; /* Changed from right: 0 for RTL */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%;
+    z-index: 1;
+}
+
+/* Glow effect behind model */
+.hero-model-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(195, 155, 110, 0.15) 0%, rgba(15, 17, 21, 0) 70%);
+    filter: blur(40px);
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.property-model {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    outline: none;
+    --poster-color: transparent;
+}
+
+.ar-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ar-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Small Screens */
+@media (max-width: 1024px) {
+    .navbar {
+        height: 80px;
+    }
+
+    .hero {
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+        padding-top: 1rem;
+        min-height: auto;
+    }
+    
+    .hero-model-container {
+        position: relative;
+        width: 100%;
+        height: 350px !important;
+        min-height: 350px;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 1; /* Force first on mobile flex-column */
+        margin-bottom: 2rem;
+        z-index: 5;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 0 1.5rem;
+        order: 2; /* Force second */
+        z-index: 10;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .property-details {
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .nav-links {
+        display: none; /* simple mobile nav hide */
+    }
+}
