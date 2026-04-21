@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preload" href="/3_12_2026.glb" as="fetch" crossOrigin="anonymous" />
+        <link rel="preload" href="/3_12_2026-draco-optimized.glb" as="fetch" crossOrigin="anonymous" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

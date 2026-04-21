@@ -57,4 +57,4 @@ export default function ModelViewer({ modelPath, viewMode = 'exterior' }: ModelV
   );
 }
 
-useGLTF.preload('/3_12_2026.glb');
+useGLTF.preload('/3_12_2026-draco-optimized.glb');
