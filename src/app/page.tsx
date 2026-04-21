@@ -1,11 +1,14 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
 
-// Dynamically import Canvas component since Three.js relies on browser APIs (can't be SSR'd)
-const Canvas = dynamic(() => import('@react-three/fiber').then((mod) => mod.Canvas), { ssr: false });
-const ModelViewer = dynamic(() => import('@/components/ModelViewer'), { ssr: false });
+// Dynamically import the wrapper to prevent SSR issues and load Canvas/ModelViewer together
+const CanvasWrapper = dynamic(() => import('@/components/CanvasWrapper'), { 
+  ssr: false,
+  loading: () => <div className="text-center w-full h-full flex items-center justify-center text-amber-500 font-mono animate-pulse">جاري تحميل الأصول...</div>
+});
 
 export default function Home() {
   const [viewMode, setViewMode] = useState<'exterior' | 'interior'>('exterior');
@@ -13,19 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-950 text-white font-sans overflow-x-hidden" dir="rtl">
       {/* Navigation */}
-      <nav className="absolute top-0 w-full flex justify-between items-center px-6 md:px-10 py-6 z-20">
-        <div className="text-xl md:text-2xl font-bold tracking-tight">
-          إيستيت<span className="text-amber-500">3D</span>
-        </div>
-        <ul className="hidden md:flex gap-8 text-neutral-300 font-medium">
-          <li className="hover:text-amber-400 cursor-pointer transition-colors">العقارات</li>
-          <li className="hover:text-amber-400 cursor-pointer transition-colors">من نحن</li>
-          <li className="hover:text-amber-400 cursor-pointer transition-colors">اتصل بنا</li>
-        </ul>
-        <button className="border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-neutral-950 px-4 md:px-6 py-2 rounded-full font-semibold transition-all text-sm md:text-base">
-          ابدأ الآن
-        </button>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex flex-col-reverse md:flex-row items-center px-6 md:px-20 pt-0 md:pt-10">
@@ -78,11 +69,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-amber-500/5 blur-[120px] rounded-full"></div>
 
           <div className="w-full h-full cursor-grab active:cursor-grabbing relative overflow-visible">
-            <Suspense fallback={<div className="text-center w-full h-full flex items-center justify-center text-amber-500 font-mono animate-pulse">جاري تحميل الأصول...</div>}>
-              <Canvas shadows camera={{ position: [5, 2, 5], fov: 45 }}>
-                <ModelViewer modelPath="/3_12_2026.glb" viewMode={viewMode} />
-              </Canvas>
-            </Suspense>
+            <CanvasWrapper viewMode={viewMode} />
           </div>
         </div>
 
